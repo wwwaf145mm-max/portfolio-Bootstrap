@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>mariam | Portfolio</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- تنسيقات لوحة الألوان الدافئة (كريمي، بيج، بني، بني غامق) مريحة للعين -->
+    <style>
+        :root {
+            --c-cream-bg: #FAF7F2;          /* خلفية كريمي هادئة */
+            --c-card-bg: #FFFDF9;           /* كريمي فاتح ناصع للبطاقات */
+            --c-beige-soft: #F4EDE4;        /* بيج ناعم للأقسام */
+            --c-beige-border: #E5D9CC;      /* بيج للحدود */
+            --c-brown-caramel: #B08968;     /* بني كراميل فاتح */
+            --c-brown-warm: #7F5539;        /* بني موكا دافئ رئيسي */
+            --c-brown-dark: #2B1D14;        /* بني غامق إسبريسو */
+            --c-text-muted: #6B5B52;        /* نص بني رمادي مريح للعين */
+        }
+
+        body {
+            background-color: var(--c-cream-bg);
+            color: var(--c-brown-dark);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* شريط التنقل العلوي */
+        .navbar-custom {
+            background-color: var(--c-brown-dark) !important;
+        }
+        .navbar-custom .nav-link {
+            color: #EFE8DE !important;
+            transition: color 0.2s ease;
+        }
+        .navbar-custom .nav-link:hover,
+        .navbar-custom .nav-link.active {
+            color: #DDB892 !important;
+        }
+
+        /* الأقسام ذات التدرج الكريمي والبيج */
+        .hero-warm, .contact-warm {
+            background: linear-gradient(135deg, #FAF7F2 0%, #F3EDE2 50%, #E6D8C6 100%);
+            color: var(--c-brown-dark);
+        }
+
+        /* الأزرار الدافئة */
+        .btn-warm-primary {
+            background-color: var(--c-brown-warm);
+            color: #FFFDF9;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        .btn-warm-primary:hover {
+            background-color: #583A26;
+            color: #FFFFFF;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(43, 29, 20, 0.2);
+        }
+
+        .btn-warm-outline {
+            background-color: transparent;
+            color: var(--c-brown-warm);
+            border: 2px solid var(--c-brown-warm);
+            transition: all 0.3s ease;
+        }
+        .btn-warm-outline:hover {
+            background-color: var(--c-brown-warm);
+            color: #FFFDF9;
+            transform: translateY(-2px);
+        }
+
+        /* البطاقات المتناسقة */
+        .custom-card {
+            background-color: var(--c-card-bg);
+            border: 1px solid var(--c-beige-border);
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .custom-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(43, 29, 20, 0.08) !important;
+        }
+
+        .badge-warm {
+            background-color: var(--c-beige-soft);
+            color: var(--c-brown-dark);
+            border: 1px solid var(--c-beige-border);
+        }
+
+        .badge-accent {
+            background-color: var(--c-brown-warm);
+            color: #FFFDF9;
+        }
+
+        /* الحقول والنماذج */
+        .form-control-warm {
+            background-color: #FAF7F2;
+            border: 1px solid var(--c-beige-border);
+            color: var(--c-brown-dark);
+        }
+        .form-control-warm:focus {
+            background-color: #FFFFFF;
+            border-color: var(--c-brown-warm);
+            box-shadow: 0 0 0 0.25rem rgba(127, 85, 57, 0.2);
+            color: var(--c-brown-dark);
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ============================================== -->
+<!-- 1. شريط القائمة (Navbar)                        -->
+<!-- ============================================== -->
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top py-3 shadow-sm">
+    <div class="container">
+        <a class="navbar-brand fw-bold fs-4" href="#home">
+            <span style="color: #DDB892;">mariam</span> <span class="text-white-50">Portfolio</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMenu">
+            <div class="navbar-nav ms-auto gap-2">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- ============================================== -->
+<!-- 2. الجزء الترحيبي (Hero Section)              -->
+<!-- ============================================== -->
+<section id="home" class="hero-warm py-5">
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-md-7 text-center text-md-start">
+                <span class="badge badge-accent mb-3 p-2 px-3 fw-semibold shadow-sm">
+                    Welcome To My Portfolio
+                </span>
+                <h1 class="display-4 fw-bold mb-2" style="color: var(--c-brown-dark);">
+                    Hi, I'm <span style="color: var(--c-brown-warm);">mariam</span>
+                </h1>
+                <h2 class="h3 mb-3 fw-semibold" style="color: var(--c-brown-caramel);">
+                    Web Developer
+                </h2>
+                <p class="lead mb-4" style="color: var(--c-text-muted); font-weight: 500;">
+                    I build modern, responsive and user-friendly websites
+                    using HTML, CSS, Bootstrap and JavaScript.
+                </p>
+                <div class="d-flex flex-wrap gap-2 justify-content-center justify-content-md-start">
+                    <a href="#projects" class="btn btn-warm-primary btn-lg px-4 shadow-sm">
+                        <i class="bi bi-briefcase me-1"></i> My Projects
+                    </a>
+                    <a href="#contact" class="btn btn-warm-outline btn-lg px-4 shadow-sm">
+                        Contact Me
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-5 text-center mt-4 mt-md-0">
+                <img src="assets/img/person.jpg"
+                     alt="Mariam Profile"
+                     width="230"
+                     height="230"
+                     style="object-fit: cover; border: 6px solid #D8C7B5 !important;"
+                     class="rounded-circle shadow-lg">
+                <div class="mt-3">
+                    <span class="badge badge-warm p-2 px-3 shadow-sm">
+                        <i class="bi bi-code-slash me-1" style="color: var(--c-brown-warm);"></i>
+                        Creative Developer
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================== -->
+<!-- 3. قسم عنّي (About Me)                         -->
+<!-- ============================================== -->
+<section id="about" class="py-5" style="background-color: var(--c-card-bg);">
+    <div class="container py-3">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold" style="color: var(--c-brown-dark);">
+                About <span style="color: var(--c-brown-warm);">Me</span>
+            </h2>
+            <p style="color: var(--c-text-muted);">
+                Get to know me better
+            </p>
+            <div class="mx-auto" style="height: 3px; width: 50px; background-color: var(--c-brown-warm);"></div>
+        </div>
+        <div class="row g-4 align-items-stretch">
+            <div class="col-md-6">
+                <div class="card custom-card p-4 h-100 shadow-sm">
+                    <div class="display-6 mb-3" style="color: var(--c-brown-warm);">
+                        <i class="bi bi-person-workspace"></i>
+                    </div>
+                    <h4 class="fw-bold" style="color: var(--c-brown-dark);">Who Am I?</h4>
+                    <p style="color: var(--c-text-muted);">
+                        I am a passionate web developer who enjoys
+                        learning new technologies and creating
+                        useful digital experiences.
+                    </p>
+                    <p style="color: var(--c-text-muted);">
+                        My goal is to build clean, responsive
+                        and easy-to-use websites.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card custom-card h-100 shadow-sm overflow-hidden">
+                    <div class="p-3" style="background-color: var(--c-brown-warm); color: #FFFDF9;">
+                        <h5 class="mb-0 fw-bold">
+                            <i class="bi bi-person-lines-fill me-2"></i> Personal Information
+                        </h5>
+                    </div>
+                    <div class="card-body p-4" style="background-color: var(--c-card-bg);">
+                        <p class="mb-3">
+                            <i class="bi bi-person-fill me-2" style="color: var(--c-brown-warm);"></i>
+                            <strong>Name:</strong> mariam
+                        </p>
+                        <p class="mb-3">
+                            <i class="bi bi-envelope-fill me-2" style="color: var(--c-brown-warm);"></i>
+                            <strong>Email:</strong> wwwaf145mm@gmail.com
+                        </p>
+                        <p class="mb-3">
+                            <i class="bi bi-geo-alt-fill me-2" style="color: var(--c-brown-warm);"></i>
+                            <strong>Location:</strong> Egypt
+                        </p>
+                        <p class="mb-0">
+                            <i class="bi bi-code-slash me-2" style="color: var(--c-brown-warm);"></i>
+                            <strong>Role:</strong> Web Developer
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================== -->
+<!-- 4. قسم المهارات (Skills)                       -->
+<!-- ============================================== -->
+<section id="skills" class="py-5" style="background-color: var(--c-beige-soft);">
+    <div class="container py-3">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold" style="color: var(--c-brown-dark);">
+                My <span style="color: var(--c-brown-warm);">Skills</span>
+            </h2>
+            <p style="color: var(--c-text-muted);">
+                Technologies I use to build websites
+            </p>
+            <div class="mx-auto" style="height: 3px; width: 50px; background-color: var(--c-brown-warm);"></div>
+        </div>
+        <div class="row g-4 text-center">
+            <div class="col-6 col-md-3">
+                <div class="card custom-card p-4 h-100 shadow-sm">
+                    <i class="bi bi-filetype-html display-4" style="color: #9C6644;"></i>
+                    <h5 class="fw-bold mt-3" style="color: var(--c-brown-dark);">HTML</h5>
+                    <span class="badge badge-warm mt-auto">Structure</span>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card custom-card p-4 h-100 shadow-sm">
+                    <i class="bi bi-filetype-css display-4" style="color: var(--c-brown-warm);"></i>
+                    <h5 class="fw-bold mt-3" style="color: var(--c-brown-dark);">CSS</h5>
+                    <span class="badge badge-warm mt-auto">Styling</span>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card custom-card p-4 h-100 shadow-sm">
+                    <i class="bi bi-bootstrap-fill display-4" style="color: #8D6E63;"></i>
+                    <h5 class="fw-bold mt-3" style="color: var(--c-brown-dark);">Bootstrap</h5>
+                    <span class="badge badge-warm mt-auto">Responsive</span>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card custom-card p-4 h-100 shadow-sm">
+                    <i class="bi bi-filetype-js display-4" style="color: #B08968;"></i>
+                    <h5 class="fw-bold mt-3" style="color: var(--c-brown-dark);">JavaScript</h5>
+                    <span class="badge badge-warm mt-auto">Interactive</span>
+                </div>
+            </div>
+       </div>
+    </div>
+</section>
+
+<!-- ============================================== -->
+<!-- 5. قسم المشاريع (Projects)                     -->
+<!-- ============================================== -->
+<section id="projects" class="py-5" style="background-color: var(--c-cream-bg);">
+    <div class="container py-3">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold" style="color: var(--c-brown-dark);">
+                My <span style="color: var(--c-brown-warm);">Projects</span>
+            </h2>
+            <p style="color: var(--c-text-muted);">
+                Some projects I have worked on
+            </p>
+            <div class="mx-auto" style="height: 3px; width: 50px; background-color: var(--c-brown-warm);"></div>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card custom-card h-100 shadow-sm overflow-hidden">
+                    <img src="https://placehold.co/600x400/8D6E63/ffffff?text=Student+System"
+                         class="card-img-top"
+                         alt="Student Management System">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <span class="badge badge-accent mb-2 align-self-start">Management</span>
+                        <h5 class="fw-bold" style="color: var(--c-brown-dark);">Student System</h5>
+                        <p style="color: var(--c-text-muted);" class="flex-grow-1">
+                            A simple system for managing student records.
+                        </p>
+                        <a href="#" class="btn btn-warm-outline mt-2">
+                            View Project <i class="bi bi-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card custom-card h-100 shadow-sm overflow-hidden">
+                    <img src="https://placehold.co/600x400/583A26/ffffff?text=My+Website"
+                         class="card-img-top"
+                         alt="Personal Website">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <span class="badge badge-accent mb-2 align-self-start">Portfolio</span>
+                        <h5 class="fw-bold" style="color: var(--c-brown-dark);">Personal Website</h5>
+                        <p style="color: var(--c-text-muted);" class="flex-grow-1">
+                            A personal website to introduce skills and work.
+                        </p>
+                        <a href="#" class="btn btn-warm-outline mt-2">
+                            View Project <i class="bi bi-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card custom-card h-100 shadow-sm overflow-hidden">
+                    <img src="https://placehold.co/600x400/7F5539/ffffff?text=Online+Store"
+                         class="card-img-top"
+                         alt="Online Store">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <span class="badge badge-accent mb-2 align-self-start">E-Commerce</span>
+                        <h5 class="fw-bold" style="color: var(--c-brown-dark);">Online Store</h5>
+                        <p style="color: var(--c-text-muted);" class="flex-grow-1">
+                            A simple online store with product cards.
+                        </p>
+                        <a href="#" class="btn btn-warm-outline mt-2">
+                            View Project <i class="bi bi-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+   </div>
+</section>
+
+<!-- ============================================== -->
+<!-- 6. قسم التواصل (Contact Me)                    -->
+<!-- ============================================== -->
+<section id="contact" class="contact-warm py-5">
+    <div class="container py-3">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold" style="color: var(--c-brown-dark);">
+                Contact <span style="color: var(--c-brown-warm);">Me</span>
+            </h2>
+            <p style="color: var(--c-text-muted); font-weight: 500;">
+                Have a project in mind? Let's talk.
+            </p>
+            <div class="mx-auto" style="height: 3px; width: 50px; background-color: var(--c-brown-warm);"></div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-7 col-lg-6">
+                <div class="card custom-card p-4 p-md-5 shadow-lg">
+                    <form>
+                        <label class="form-label fw-bold" style="color: var(--c-brown-dark);">
+                            Your Name
+                        </label>
+                        <input type="text"
+                               class="form-control form-control-warm mb-3 py-2"
+                               placeholder="Enter your name">
+                        <label class="form-label fw-bold" style="color: var(--c-brown-dark);">
+                            Your Email
+                        </label>
+                        <input type="email"
+                               class="form-control form-control-warm mb-3 py-2"
+                               placeholder="name@example.com">
+                        <label class="form-label fw-bold" style="color: var(--c-brown-dark);">
+                            Your Message
+                        </label>
+                        <textarea class="form-control form-control-warm mb-3"
+                                  rows="4"
+                                  placeholder="Write your message"></textarea>
+                        <button type="button" class="btn btn-warm-primary w-100 fw-bold py-2 shadow-sm">
+                            <i class="bi bi-send me-2"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================== -->
+<!-- 7. التذييل (Footer)                            -->
+<!-- ============================================== -->
+<footer class="text-center py-4" style="background-color: var(--c-brown-dark); color: #EFE8DE;">
+    <div class="container">
+        <h5 class="fw-bold mb-2">
+            <span style="color: #DDB892;">mariam</span> Portfolio
+        </h5>
+        <p class="mb-2" style="color: #C2B4A6; font-size: 0.95rem;">
+            Building ideas into websites.
+        </p>
+        <p class="mb-0 small" style="color: #9C8C7E;">
+            &copy; 2026 mariam. All Rights Reserved.
+        </p>
+    </div>
+</footer>
+
+<script src="js/bootstrap.js"></script>
+</body>
+</html>
