@@ -3,14 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>mariam | Portfolio</title>
+    <title>Mariam | Portfolio</title>
     
-    <!-- Bootstrap CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5.3 CSS (CDN مباشر ليعمل على GitHub بدون مشاكل) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <!-- تنسيقات لوحة الألوان الدافئة (كريمي، بيج، بني، بني غامق) مريحة للعين -->
+    <!-- تنسيقات لوحة الألوان الدافئة والتصميم المحسّن -->
     <style>
         :root {
             --c-cream-bg: #FAF7F2;          /* خلفية كريمي هادئة */
@@ -23,24 +29,48 @@
             --c-text-muted: #6B5B52;        /* نص بني رمادي مريح للعين */
         }
 
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             background-color: var(--c-cream-bg);
             color: var(--c-brown-dark);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            scroll-behavior: smooth;
+            font-family: 'Plus Jakarta Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
         }
 
         /* شريط التنقل العلوي */
         .navbar-custom {
             background-color: var(--c-brown-dark) !important;
+            transition: all 0.3s ease;
+        }
+        .navbar-custom .navbar-brand {
+            letter-spacing: 0.5px;
         }
         .navbar-custom .nav-link {
             color: #EFE8DE !important;
-            transition: color 0.2s ease;
+            font-weight: 500;
+            padding: 8px 16px !important;
+            border-radius: 8px;
+            transition: all 0.2s ease;
         }
         .navbar-custom .nav-link:hover,
         .navbar-custom .nav-link.active {
             color: #DDB892 !important;
+            background-color: rgba(221, 184, 146, 0.1);
+        }
+
+        /* زر الموبايل للنافبار */
+        .navbar-toggler {
+            border-color: rgba(221, 184, 146, 0.5);
+        }
+        .navbar-toggler:focus {
+            box-shadow: 0 0 0 0.25rem rgba(221, 184, 146, 0.25);
         }
 
         /* الأقسام ذات التدرج الكريمي والبيج */
@@ -53,62 +83,101 @@
         .btn-warm-primary {
             background-color: var(--c-brown-warm);
             color: #FFFDF9;
-            border: none;
+            border: 2px solid var(--c-brown-warm);
+            border-radius: 10px;
+            font-weight: 600;
             transition: all 0.3s ease;
         }
         .btn-warm-primary:hover {
             background-color: #583A26;
+            border-color: #583A26;
             color: #FFFFFF;
             transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(43, 29, 20, 0.2);
+            box-shadow: 0 6px 15px rgba(43, 29, 20, 0.18);
         }
 
         .btn-warm-outline {
             background-color: transparent;
             color: var(--c-brown-warm);
             border: 2px solid var(--c-brown-warm);
+            border-radius: 10px;
+            font-weight: 600;
             transition: all 0.3s ease;
         }
         .btn-warm-outline:hover {
             background-color: var(--c-brown-warm);
             color: #FFFDF9;
             transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(127, 85, 57, 0.15);
         }
-
-        /* البطاقات المتناسقة */
+/* البطاقات */
         .custom-card {
             background-color: var(--c-card-bg);
             border: 1px solid var(--c-beige-border);
-            border-radius: 12px;
+            border-radius: 16px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .custom-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(43, 29, 20, 0.08) !important;
+            box-shadow: 0 12px 24px rgba(43, 29, 20, 0.08) !important;
         }
 
+        /* الشارات */
         .badge-warm {
             background-color: var(--c-beige-soft);
             color: var(--c-brown-dark);
             border: 1px solid var(--c-beige-border);
+            font-weight: 600;
+            padding: 8px 14px;
+            border-radius: 30px;
         }
 
         .badge-accent {
             background-color: var(--c-brown-warm);
             color: #FFFDF9;
+            border-radius: 30px;
+            font-weight: 600;
         }
 
         /* الحقول والنماذج */
         .form-control-warm {
             background-color: #FAF7F2;
-            border: 1px solid var(--c-beige-border);
+            border: 1.5px solid var(--c-beige-border);
             color: var(--c-brown-dark);
+            border-radius: 10px;
+            transition: all 0.2s ease;
         }
         .form-control-warm:focus {
             background-color: #FFFFFF;
             border-color: var(--c-brown-warm);
-            box-shadow: 0 0 0 0.25rem rgba(127, 85, 57, 0.2);
+            box-shadow: 0 0 0 0.25rem rgba(127, 85, 57, 0.15);
             color: var(--c-brown-dark);
+        }
+
+        /* صورة الملف الشخصي */
+        .profile-img-container {
+            width: 220px;
+            height: 220px;
+            margin: 0 auto;
+            border-radius: 50%;
+            padding: 6px;
+            background: linear-gradient(135deg, #B08968, #7F5539);
+            box-shadow: 0 10px 25px rgba(43, 29, 20, 0.15);
+        }
+        .profile-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #FFFDF9;
+        }
+
+        /* فواصل العناوين */
+        .section-divider {
+            height: 3px;
+            width: 50px;
+            background-color: var(--c-brown-warm);
+            border-radius: 3px;
         }
     </style>
 </head>
@@ -123,11 +192,11 @@
         <a class="navbar-brand fw-bold fs-4" href="#home">
             <span style="color: #DDB892;">mariam</span> <span class="text-white-50">Portfolio</span>
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navMenu">
-            <div class="navbar-nav ms-auto gap-2">
+            <div class="navbar-nav ms-auto gap-lg-2 mt-3 mt-lg-0">
                 <a href="#home" class="nav-link active">Home</a>
                 <a href="#about" class="nav-link">About</a>
                 <a href="#skills" class="nav-link">Skills</a>
@@ -137,16 +206,15 @@
         </div>
     </div>
 </nav>
-
 <!-- ============================================== -->
 <!-- 2. الجزء الترحيبي (Hero Section)              -->
 <!-- ============================================== -->
 <section id="home" class="hero-warm py-5">
-    <div class="container py-5">
-        <div class="row align-items-center">
+    <div class="container py-lg-5">
+        <div class="row align-items-center g-4">
             <div class="col-md-7 text-center text-md-start">
                 <span class="badge badge-accent mb-3 p-2 px-3 fw-semibold shadow-sm">
-                    Welcome To My Portfolio
+                    ✨ Welcome To My Portfolio
                 </span>
                 <h1 class="display-4 fw-bold mb-2" style="color: var(--c-brown-dark);">
                     Hi, I'm <span style="color: var(--c-brown-warm);">mariam</span>
@@ -158,24 +226,25 @@
                     I build modern, responsive and user-friendly websites
                     using HTML, CSS, Bootstrap and JavaScript.
                 </p>
-                <div class="d-flex flex-wrap gap-2 justify-content-center justify-content-md-start">
-                    <a href="#projects" class="btn btn-warm-primary btn-lg px-4 shadow-sm">
+                <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-md-start">
+                    <a href="#projects" class="btn btn-warm-primary px-4 py-2 shadow-sm">
                         <i class="bi bi-briefcase me-1"></i> My Projects
                     </a>
-                    <a href="#contact" class="btn btn-warm-outline btn-lg px-4 shadow-sm">
-                        Contact Me
+                    <a href="#contact" class="btn btn-warm-outline px-4 py-2 shadow-sm">
+                        <i class="bi bi-chat-dots me-1"></i> Contact Me
                     </a>
                 </div>
             </div>
-            <div class="col-md-5 text-center mt-4 mt-md-0">
-                <img src="assets/img/person.jpg"
-                     alt="Mariam Profile"
-                     width="230"
-                     height="230"
-                     style="object-fit: cover; border: 6px solid #D8C7B5 !important;"
-                     class="rounded-circle shadow-lg">
-                <div class="mt-3">
-                    <span class="badge badge-warm p-2 px-3 shadow-sm">
+            
+            <div class="col-md-5 text-center">
+                <div class="profile-img-container mb-3">
+                    <!-- إذا لم تكن الصورة person.jpg موجودة، ستظهر صورة افتراضية أنيقة تلقائياً بدلاً من رمز الصورة المكسورة -->
+                    <img src="assets/img/person.jpg"
+                         alt="Mariam Profile"
+                         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80';">
+                </div>
+                <div>
+                    <span class="badge badge-warm shadow-sm">
                         <i class="bi bi-code-slash me-1" style="color: var(--c-brown-warm);"></i>
                         Creative Developer
                     </span>
@@ -184,7 +253,6 @@
         </div>
     </div>
 </section>
-
 <!-- ============================================== -->
 <!-- 3. قسم عنّي (About Me)                         -->
 <!-- ============================================== -->
@@ -197,7 +265,7 @@
             <p style="color: var(--c-text-muted);">
                 Get to know me better
             </p>
-            <div class="mx-auto" style="height: 3px; width: 50px; background-color: var(--c-brown-warm);"></div>
+            <div class="section-divider mx-auto"></div>
         </div>
         <div class="row g-4 align-items-stretch">
             <div class="col-md-6">
@@ -205,21 +273,21 @@
                     <div class="display-6 mb-3" style="color: var(--c-brown-warm);">
                         <i class="bi bi-person-workspace"></i>
                     </div>
-                    <h4 class="fw-bold" style="color: var(--c-brown-dark);">Who Am I?</h4>
-                    <p style="color: var(--c-text-muted);">
+                    <h4 class="fw-bold mb-3" style="color: var(--c-brown-dark);">Who Am I?</h4>
+                    <p style="color: var(--c-text-muted); line-height: 1.7;">
                         I am a passionate web developer who enjoys
                         learning new technologies and creating
                         useful digital experiences.
                     </p>
-                    <p style="color: var(--c-text-muted);">
+                    <p style="color: var(--c-text-muted); line-height: 1.7;">
                         My goal is to build clean, responsive
-                        and easy-to-use websites.
+                        and easy-to-use websites with modern UI standards.
                     </p>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="card custom-card h-100 shadow-sm overflow-hidden">
-                    <div class="p-3" style="background-color: var(--c-brown-warm); color: #FFFDF9;">
+                    <div class="p-3 px-4" style="background-color: var(--c-brown-warm); color: #FFFDF9;">
                         <h5 class="mb-0 fw-bold">
                             <i class="bi bi-person-lines-fill me-2"></i> Personal Information
                         </h5>
@@ -247,7 +315,6 @@
         </div>
     </div>
 </section>
-
 <!-- ============================================== -->
 <!-- 4. قسم المهارات (Skills)                       -->
 <!-- ============================================== -->
@@ -260,7 +327,7 @@
             <p style="color: var(--c-text-muted);">
                 Technologies I use to build websites
             </p>
-            <div class="mx-auto" style="height: 3px; width: 50px; background-color: var(--c-brown-warm);"></div>
+            <div class="section-divider mx-auto"></div>
         </div>
         <div class="row g-4 text-center">
             <div class="col-6 col-md-3">
@@ -294,7 +361,6 @@
        </div>
     </div>
 </section>
-
 <!-- ============================================== -->
 <!-- 5. قسم المشاريع (Projects)                     -->
 <!-- ============================================== -->
@@ -307,7 +373,7 @@
             <p style="color: var(--c-text-muted);">
                 Some projects I have worked on
             </p>
-            <div class="mx-auto" style="height: 3px; width: 50px; background-color: var(--c-brown-warm);"></div>
+            <div class="section-divider mx-auto"></div>
         </div>
         <div class="row g-4">
             <div class="col-md-4">
@@ -364,7 +430,6 @@
         </div>
    </div>
 </section>
-
 <!-- ============================================== -->
 <!-- 6. قسم التواصل (Contact Me)                    -->
 <!-- ============================================== -->
@@ -377,31 +442,40 @@
             <p style="color: var(--c-text-muted); font-weight: 500;">
                 Have a project in mind? Let's talk.
             </p>
-            <div class="mx-auto" style="height: 3px; width: 50px; background-color: var(--c-brown-warm);"></div>
+            <div class="section-divider mx-auto"></div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-md-7 col-lg-6">
-                <div class="card custom-card p-4 p-md-5 shadow-lg">
-                    <form>
-                        <label class="form-label fw-bold" style="color: var(--c-brown-dark);">
-                            Your Name
-                        </label>
-                        <input type="text"
-                               class="form-control form-control-warm mb-3 py-2"
-                               placeholder="Enter your name">
-                        <label class="form-label fw-bold" style="color: var(--c-brown-dark);">
-                            Your Email
-                        </label>
-                        <input type="email"
-                               class="form-control form-control-warm mb-3 py-2"
-                               placeholder="name@example.com">
-                        <label class="form-label fw-bold" style="color: var(--c-brown-dark);">
-                            Your Message
-                        </label>
-                        <textarea class="form-control form-control-warm mb-3"
-                                  rows="4"
-                                  placeholder="Write your message"></textarea>
-                        <button type="button" class="btn btn-warm-primary w-100 fw-bold py-2 shadow-sm">
+            <div class="col-md-8 col-lg-6">
+                <div class="card custom-card p-4 p-md-5 shadow">
+                    <form onsubmit="event.preventDefault(); alert('Thank you! Your message has been sent.');">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold" style="color: var(--c-brown-dark);">
+                                Your Name
+                            </label>
+                            <input type="text"
+                                   required
+                                   class="form-control form-control-warm py-2"
+                                   placeholder="Enter your name">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold" style="color: var(--c-brown-dark);">
+                                Your Email
+                            </label>
+                            <input type="email"
+                                   required
+                                   class="form-control form-control-warm py-2"
+                                   placeholder="name@example.com">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold" style="color: var(--c-brown-dark);">
+                                Your Message
+                            </label>
+                            <textarea class="form-control form-control-warm"
+                                      rows="4"
+                                      required
+                                      placeholder="Write your message"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-warm-primary w-100 fw-bold py-2 shadow-sm">
                             <i class="bi bi-send me-2"></i> Send Message
                         </button>
                     </form>
@@ -428,6 +502,8 @@
     </div>
 </footer>
 
-<script src="js/bootstrap.js"></script>
+<!-- Bootstrap 5.3 JS Bundle (يحتوي على Popper لحل مشكلة زر قائمة الموبايل) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
